@@ -29,10 +29,8 @@ const calcNewVel = (vel, acc, time) => {
   return newVelInMps * 3600 / 1000; // m/s to km/h
 }
 
-
 // Calculates distance
 const d2 = d + (vel * time) / 3600; // Distance = velocity (km/h) * time (hours)
-
 
 // Calculates remaining fuel
 const rf = fuel - (fbr * time); 
@@ -40,10 +38,6 @@ const rf = fuel - (fbr * time);
 //calculates new velocity based on acceleration
 const vel2 = calcNewVel(vel, acc, time);
 
-// Pick up an error with how the function below is called and make it robust to such errors
-calcNewVel = (vel, acc, time) => { 
-  return vel + (acc*time)
-}
 
 console.log(`Corrected New Velocity: ${vel2} km/h`);
 console.log(`Corrected New Distance: ${d2} km`);
