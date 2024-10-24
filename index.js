@@ -22,11 +22,23 @@ const calcNewVel = (vel, acc, time) => {
   if (typeof acc !== 'number' || typeof time !== 'number' || typeof vel !== 'number') {
     throw new Error('Invalid input: Ensure velocity (km/h), acceleration (m/s^2), and time (s) are numbers.');
   }
+  // Calculate new velocity in m/s
+  const newVelInMps = velInMps + (acc * time);
+  
+  // Convert back to km/h
+  return newVelInMps * 3600 / 1000; // m/s to km/h
+}
 
 
-const d2 = d + (vel*time) //calcultes new distance
-const rf = fbr*time //calculates remaining fuel
-const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+// Calculates distance
+const d2 = d + (vel * time) / 3600; // Distance = velocity (km/h) * time (hours)
+
+
+// Calculates remaining fuel
+const rf = fuel - (fbr * time); 
+
+//calculates new velocity based on acceleration
+const vel2 = calcNewVel(vel, acc, time);
 
 // Pick up an error with how the function below is called and make it robust to such errors
 calcNewVel = (vel, acc, time) => { 
